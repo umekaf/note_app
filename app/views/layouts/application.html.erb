@@ -15,6 +15,11 @@
     <div class="flash">
       <%= render partial: "layouts/shared/flash"%>
     </div>
+    <nav>
+      <% if current_user%>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <%end%>
+    </nav>
     <%= yield %>
   </body>
 </html>
