@@ -2,21 +2,21 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
 
   def index
-    @notes = Note.all
+    @notes = current_user.notes.all
   end
 
   def show
   end
 
   def new
-    @note = Note.new
+    @note = current_user.notes.new
   end
 
   def edit
   end
 
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
 
     respond_to do |format|
       if @note.save
@@ -47,7 +47,7 @@ class NotesController < ApplicationController
 
   private
     def set_note
-      @note = Note.find(params[:id])
+      @note = current_user.notes.find(params[:id])
     end
 
     def note_params
